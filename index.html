@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Copilot SANDBOX</title>
+    <style>
+        /* Common styles for elements with edges */
+        header, div, button, hr{
+            border-radius: 13px;
+            box-shadow: 0 0 10px grey;
+        }
+
+        body {
+            background: black;
+            color: steelblue;
+            margin: 4.444%;
+            display: flex;
+            flex-direction: column;            
+        }
+
+        .header-main {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #333;
+            padding: 10px;
+        }
+
+        .header-title {
+            color: lime;
+        }
+
+        .header-title h1, 
+        .header-title h2 {
+            margin: 0.333em;
+        }
+
+        .robot-icon {
+            font-size: 2em;
+        }
+
+        .commands-list {
+            color: blueviolet;
+        }
+
+        .BTN1 {
+            background: #00008B;
+            color: aqua;
+            box-shadow: 0 0 5px aqua, 0 0 10px grey;
+        }
+    </style>
+    <script type="module">
+        import Calculator from './calculator.js';
+        const calculator = new Calculator();
+        window.calculator = calculator; // Make it globally accessible
+        console.log('Calculator initialized:', calculator);
+    </script>
+</head>
+<body>
+    <header class="header-main">
+        <div class="header-title">
+            <h1>INNOVATE...</h1>
+            <h2>...with Copilot</h2>
+        </div>
+        <div class="robot-icon">🤖</div>
+    </header>
+    <hr />
+    <header  style="padding: 4.444%; ">
+        <h3>AI Copilot</h3>
+        <h4>AI Copilot is a tool that helps you write better code.</h4> 
+        <ul class="commands-list">
+            <li>CTRL + i : INLINE CHAT.</li>
+            <li>SLASH COMMANDS: </li>
+            <li>/fix /test /doc /explain</li>
+            <li>Ghost Text.</li>
+            <li>Suggestions: ALT + [] OR ⬅️ ➡️.</li>
+            <li>AGENTS:@terminal,@vscode,@workspace</li>
+        </ul>
+        <h4>GENERATE: <i>Responsive HTML, CSS, and MODULAR JS!</i></h4>
+    </header>
+    <main>
+        <div id="calculator" style="padding: 4.444%;margin: 1em auto;
+    width: 88%;">
+            <input id="display" type="text" style="display: flex
+; background: #222; padding: 10px; font-size: 2em; 
+                text-align: right; border-radius:22px; color:lime; margin:0 auto; margin-bottom:1em;" value="0" readonly />
+            <!-- <div id="display" style="background: #222; color: white; padding: 10px; font-size: 2em; text-align: right;">0</div> -->
+            <aside id="buttons" style="display: grid; grid-template-columns: repeat(4, 1fr); 
+                gap: 10px;     width: 80%;
+                margin: 1em auto;">
+                <button class="btn BTN1" data-value="7">7</button>
+                <button class="btn BTN1" data-value="8">8</button>
+                <button class="btn BTN1" data-value="9">9</button>
+                <button class="btn BTN1" data-value="/">/</button>
+                <button class="btn BTN1" data-value="4">4</button>
+                <button class="btn BTN1" data-value="5">5</button>
+                <button class="btn BTN1" data-value="6">6</button>
+                <button class="btn BTN1" data-value="*">*</button>
+                <button class="btn BTN1" data-value="1">1</button>
+                <button class="btn BTN1" data-value="2">2</button>
+                <button class="btn BTN1" data-value="3">3</button>
+                <button class="btn BTN1" data-value="-">-</button>
+                <button class="btn BTN1" data-value="0">0</button>
+                <button class="btn BTN1" data-value=".">.</button>
+                <button class="btn BTN1" data-value="C">C</button>
+                <button class="btn BTN1" data-value="+">+</button>
+                <button class="btn" data-value="=" style="grid-column: span 4; 
+                background: lime; color: black;
+                height:2.444em; width:88.888%; margin:1em auto;">=</button>
+            </aside>
+        </div>
+        <script>
+            const display = document.getElementById('display');
+            const buttons = document.querySelectorAll('.btn');
+
+            buttons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const value = button.getAttribute('data-value');
+                    if (value === 'C') {
+                        calculator.clear();
+                    } else if (value === '=') {
+                        calculator.calculate();
+                    } else {
+                        calculator.append(value);
+                    }
+                    display.textContent = calculator.getDisplayValue();
+                });
+            });
+        </script>
+    </main>
+    <footer>
+        <p>This project is licensed under the MIT License.</p>
+        <small>2025 spazefalcon 🦅</small>
+    </footer>
+</body>
+</html>
